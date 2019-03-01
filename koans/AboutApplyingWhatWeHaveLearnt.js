@@ -102,9 +102,19 @@ describe("About Applying What We Have Learnt", function() {
 
   /*********************************************************************************/
   /* UNCOMMENT FOR EXTRA CREDIT */
-  /*
-  it("should find the largest prime factor of a composite number", function () {
 
+  it("should find the largest prime factor of a composite number", function () {
+    // Use range to find all numbers less than composite number
+    // Loop array backwards looking for a prime number that can be a quotient of the composite numbers
+
+    function largestPrime(composite) {
+      return _.range(0, composite)
+              .filter(function(x) { return isPrime(x) && composite % x === 0; })
+              .sort(function(a, b) { return (a - b); })
+              .pop();
+    }
+
+    expect(largestPrime(99)).toBe(11);
   });
 
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
@@ -123,5 +133,18 @@ describe("About Applying What We Have Learnt", function() {
   it("should find the 10001st prime", function () {
 
   });
-  */
+
+  function isPrime(num) {
+    if (num <= 1){
+      return false;
+    }
+
+    for (let i = 2; i < num; i++) {
+      if (num % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 });
