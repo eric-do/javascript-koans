@@ -137,13 +137,24 @@ describe("About Applying What We Have Learnt", function() {
     let max = palindromeArr.reduce(function(max, curr) {
       return Math.max(max, curr);
     });
-    
+
     expect(max).toBe(906609);
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
+    function divisibleByAll(min, max) {
+      let range = _.range(min, max + 1);
+      let i = max;
+      let found = false;
 
-
+      while (found === false) {
+        if (range.every(function(x) { return i % x === 0; })) {
+          return(i);
+        }
+        i++;
+      }
+    }
+    expect(divisibleByAll(1,20)).toBe(232792560);
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
