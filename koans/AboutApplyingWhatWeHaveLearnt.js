@@ -126,6 +126,12 @@ describe("About Applying What We Have Learnt", function() {
     let range = _.range(100, 1000).reverse();
     let palindromeArr = [];
 
+    function isPalindrome(str) {
+      let forward = str.toString();
+      let backward = forward.split('').slice().reverse().join('');
+      return forward.toLowerCase() === backward.toLowerCase();
+    }
+
     range.forEach(function(i) {
       range.forEach(function(j){
         if (isPalindrome(i * j)){
@@ -142,6 +148,8 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
+    // Create an array of all numbers in a range
+    // Starting from the range max, loop while the number isn't divisible by every value in the range
     function divisibleByAll(min, max) {
       let range = _.range(min, max + 1);
       let i = max;
@@ -158,7 +166,22 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
+    // Create a range of numbers for summing and squaring
+    // Calculate sum of squares
+    // Calculate square of sums
+    // Find difference
+    function sumSquaresDifference(min, max) {
 
+      let range = _.range(min, max + 1);
+
+      let sumOfSquares = range.map(function(x) { return x**2; })
+                              .reduce(function(sum, num) { return sum + num; });
+
+      let squareOfSums = range.reduce(function(sum, num) {return sum + num; })**2;
+
+      return squareOfSums - sumOfSquares;
+    }
+    expect(sumSquaresDifference(1,10)).toBe(2640);
   });
 
   it("should find the 10001st prime", function () {
@@ -176,12 +199,6 @@ describe("About Applying What We Have Learnt", function() {
       }
     }
     return true;
-  }
-
-  function isPalindrome(str) {
-    let forward = str.toString();
-    let backward = forward.split('').slice().reverse().join('');
-    return forward.toLowerCase() === backward.toLowerCase();
   }
 
 });
