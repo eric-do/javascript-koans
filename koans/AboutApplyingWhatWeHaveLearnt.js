@@ -58,13 +58,29 @@ describe("About Applying What We Have Learnt", function() {
       }
     }
 
-    expect(sum).toBe(FILL_ME_IN);
+    expect(sum).toBe(233168);
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
-    var sum = FILL_ME_IN;    /* try chaining range() and reduce() */
+    // Range() is not native to JS and I didn't see any documentation for it on Jasmine, so I wrote my own chainable function
+    var sum = range(1, 999).reduce(function(acc, curr) {
+      if (curr % 3 === 0 || curr % 5 === 0) {
+        console.log(acc, curr);
+        return acc + curr;
+      }
+      return acc;
+    }, 0);
 
-    expect(233168).toBe(FILL_ME_IN);
+    expect(sum).toBe(233168);
+
+    function range(min, max) {
+      let arr = [];
+
+      for (let i = min; i <= max; i++){
+        arr.push(i);
+      }
+      return arr;
+    }
   });
 
   /*********************************************************************************/
