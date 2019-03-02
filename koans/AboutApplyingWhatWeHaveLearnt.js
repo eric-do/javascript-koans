@@ -171,12 +171,9 @@ describe("About Applying What We Have Learnt", function() {
     // Calculate square of sums
     // Find difference
     function sumSquaresDifference(min, max) {
-
       let range = _.range(min, max + 1);
-
       let sumOfSquares = range.map(function(x) { return x**2; })
                               .reduce(function(sum, num) { return sum + num; });
-
       let squareOfSums = range.reduce(function(sum, num) {return sum + num; })**2;
 
       return squareOfSums - sumOfSquares;
@@ -185,7 +182,21 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the 10001st prime", function () {
+    function findPrimeIndex(index) {
+      let primeCounter = 0;
+      let num = 2;
+      let found;
 
+      while (primeCounter < index) {
+        if (isPrime(num)) {
+          found = num;
+          primeCounter++;
+        }
+        num++;
+      }
+      return found;
+    }
+    expect(findPrimeIndex(10001)).toBe(104743);
   });
 
   function isPrime(num) {
